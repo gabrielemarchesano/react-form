@@ -51,6 +51,12 @@ function App() {
     }
   }
 
+  function handleRemoveTitle(id){
+    console.log(id)
+    const filteredTitle = articles.filter((article) => article.id != id)
+    console.log(filteredTitle);
+    setArticles(filteredTitle);
+  }
 
   return (
     <>
@@ -76,7 +82,12 @@ function App() {
           <ul className="list-group">
             {
               articles.map(article => (
-                <li className="list-group-item" key={article.id}>{article.title}</li>
+                <li className="list-group-item d-flex justify-content-between align-items-center" key={article.id}>
+                  {article.title}
+                  <button className="btn btn-danger btn-sm" onClick={() => handleRemoveTitle(article.id)}>
+                    <i className="bi bi-trash"></i>
+                  </button>
+                </li>
               ))
             }
           </ul>
