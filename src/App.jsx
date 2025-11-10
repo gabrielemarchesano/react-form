@@ -27,11 +27,28 @@ function App() {
     <>
       <div className="container">
         <h1 className="text-center py-4">React Blog Form</h1>
-        <ul className="list-group">
-          {articles.map((article) => (
-            <li className="list-group-item">{article.title}</li>
-        ))}
-        </ul>
+        <div className="card p-3">
+          <form>
+            <div class="mb-3">
+              <label for="articles" class="form-label">Nuovo articolo</label>
+              <input
+                type="text"
+                class="form-control"
+                name="articles"
+                id="articles"
+                aria-describedby="helpId"
+                placeholder="Inserisci il titolo del nuovo articolo"
+              />
+              <button type="submit" className="btn btn-success my-2">Aggiungi</button>
+            </div>
+            
+          </form>
+            <ul className="list-group">
+              {articles.map((article) => (
+                <li className="list-group-item">{article.title}</li>
+            ))}
+            </ul>
+        </div>
       </div>
     </>
   )
