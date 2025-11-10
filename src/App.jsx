@@ -2,7 +2,7 @@ import { useState } from "react"
 
 function App() {
 
-  const articles = [
+  const initialArticles = [
     {
       id: 1,
       title: "Calcio"
@@ -25,9 +25,14 @@ function App() {
     }
   ]
 
-  const [article, setArticle] = useState(articles);
+  const [article, setArticle] = useState(initialArticles);
   console.log(article);
   console.log(setArticle);
+  const [newArticle, setNewArticle] = useState("");
+
+  function handleNewArticle(event){
+    setNewArticle(event.target.value)
+  }
 
 
   function handleSubmit(event){
@@ -49,8 +54,9 @@ function App() {
                 className="form-control"
                 name="articles"
                 id="articles"
-                aria-describedby="helpId"
                 placeholder="Inserisci il titolo del nuovo articolo"
+                value={newArticle}
+                onChange={handleNewArticle}
               />
               <button type="submit" className="btn btn-success my-2">Aggiungi</button>
             </div>
