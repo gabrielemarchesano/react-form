@@ -25,9 +25,9 @@ function App() {
     }
   ]
 
-  const [article, setArticle] = useState(initialArticles);
-  console.log(article);
-  console.log(setArticle);
+  const [articles, setArticles] = useState(initialArticles);
+  /* console.log(article);
+  console.log(setArticle); */
   const [newArticle, setNewArticle] = useState("");
 
   function handleNewArticle(event){
@@ -37,7 +37,15 @@ function App() {
 
   function handleSubmit(event){
     event.preventDefault();
-    alert("Form inviato");
+    console.log(newArticle);
+    const newArticles = [
+      ...articles,
+      {
+      id: articles.length + 1,
+      title: newArticle
+      }
+    ];
+    setArticles(newArticles);
   }
 
 
@@ -64,7 +72,7 @@ function App() {
           </form>
             <ul className="list-group">
               {
-              article.map(article => (
+              articles.map(article => (
                 <li className="list-group-item" key={article.id}>{article.title}</li>
               ))
               }
