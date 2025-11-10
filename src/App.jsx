@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 function App() {
 
   const articles = [
@@ -23,17 +25,28 @@ function App() {
     }
   ]
 
+  const [article, setArticle] = useState(articles);
+  console.log(article);
+  console.log(setArticle);
+
+
+  function handleSubmit(event){
+    event.preventDefault();
+    alert("Form inviato");
+  }
+
+
   return (
     <>
       <div className="container">
         <h1 className="text-center py-4">React Blog Form</h1>
         <div className="card p-3">
-          <form>
-            <div class="mb-3">
-              <label for="articles" class="form-label">Nuovo articolo</label>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label className="form-label">Nuovo articolo</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="articles"
                 id="articles"
                 aria-describedby="helpId"
@@ -44,9 +57,11 @@ function App() {
             
           </form>
             <ul className="list-group">
-              {articles.map((article) => (
-                <li className="list-group-item">{article.title}</li>
-            ))}
+              {
+              article.map(article => (
+                <li className="list-group-item" key={article.id}>{article.title}</li>
+              ))
+              }
             </ul>
         </div>
       </div>
