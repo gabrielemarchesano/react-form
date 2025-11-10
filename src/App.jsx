@@ -28,24 +28,27 @@ function App() {
   const [articles, setArticles] = useState(initialArticles);
   /* console.log(article);
   console.log(setArticle); */
-  const [newArticle, setNewArticle] = useState("");
+  const [newTitle, setNewTitle] = useState("");
 
-  function handleNewArticle(event){
-    setNewArticle(event.target.value)
+  function handleNewArticle(event) {
+    setNewTitle(event.target.value)
   }
 
 
-  function handleSubmit(event){
+  function handleSubmit(event) {
     event.preventDefault();
-    console.log(newArticle);
-    const newArticles = [
-      ...articles,
-      {
-      id: articles.length + 1,
-      title: newArticle
-      }
-    ];
-    setArticles(newArticles);
+    /* console.log(newTitle); */
+    if (newTitle.length > 3) {
+      const newArticles = [
+        ...articles,
+        {
+          id: articles.length + 1,
+          title: newTitle
+        }
+      ];
+      setArticles(newArticles);
+      setNewTitle("");
+    }
   }
 
 
@@ -63,20 +66,20 @@ function App() {
                 name="articles"
                 id="articles"
                 placeholder="Inserisci il titolo del nuovo articolo"
-                value={newArticle}
+                value={newTitle}
                 onChange={handleNewArticle}
               />
               <button type="submit" className="btn btn-success my-2">Aggiungi</button>
             </div>
-            
+
           </form>
-            <ul className="list-group">
-              {
+          <ul className="list-group">
+            {
               articles.map(article => (
                 <li className="list-group-item" key={article.id}>{article.title}</li>
               ))
-              }
-            </ul>
+            }
+          </ul>
         </div>
       </div>
     </>
